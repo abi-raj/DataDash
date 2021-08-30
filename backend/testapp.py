@@ -1,5 +1,5 @@
 import io
-from flask import Flask,request
+from flask import Flask,request,render_template
 from io import StringIO
 import csv
 from flask.json import jsonify
@@ -11,7 +11,7 @@ from OpenSSL import SSL
 # context.use_certificate('server.crt')
 # context.use_privatekey('server.key')
 app = Flask(__name__)
-CORS(app, resources={r'/*': {"origins": '*'}})
+CORS(app)
 
 def conver_to_json(csv_input):
     data={}
@@ -29,13 +29,14 @@ def conver_to_json(csv_input):
 
 @app.route('/')
 def index():
-    return 'Hello, World!'
+    return render_template('index.html')
 
 @app.route('/upload', methods=['POST'])
 # @cross_origin()
 def upload():
     if request.method == 'POST':
         f = request.files.get('file')
+
         # c=pd.read_csv(StringIO(f.read()))
         # print(c)
         # stream = io.StringIO(f.stream.read().decode("UTF8"), newline=None)
@@ -43,8 +44,8 @@ def upload():
         # print(type(csv_input))
         df=pd.read_csv(f)
         print(df.shape)
-    #print("file contents: ", file_contents)
-    #print(type(file_contents))
+        #print("file contents: ", file_contents)
+        #print(type(file_contents))
         # print(csv_input)
         # for row in csv_input:
         #     print(row)

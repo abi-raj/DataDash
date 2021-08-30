@@ -2,7 +2,7 @@
   <div>
     <input name="file" type="file" @change="upload" />
     <button @click="onUpload">Upload</button>
-    <p v-if="selectedFile">File selected</p>
+    <p v-if="selectedFile"><b>File selected (now click upload)</b></p>
 
     <div class="xyplot">
       <br />
@@ -17,12 +17,15 @@
         <option v-for="col in columns" :key="col">{{ col }}</option>
       </select>
     </div>
-
+    <br>
+  <div>
+    <button @click="onClear">Clear selection</button>
+  </div>
     <div v-if="x && y" class="plotted">
       x and y done
       <p>{{datam[x]}}</p>
       <p>{{datam[y]}} </p>
-     <HelloWorld :xax="datam[x]" :yax="datam[y]" key="child"/>
+     <HelloWorld :xax="datam[x]" :yax="datam[y]" :key="x[0]"/>
     </div>
   </div>
 </template>
@@ -41,9 +44,14 @@ export default {
       selec: null,
       x: null,
       y: null,
+      
     };
   },
   methods: {
+    onClear(){
+      this.x=null;
+      this.y=null;
+    },
     upload(event) {
       this.selectedFile = event.target.files[0];
     },

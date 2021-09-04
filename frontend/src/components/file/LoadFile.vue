@@ -32,7 +32,10 @@
         <label for="chooseFile" class="rounded-lg p-3 bg-green-300 mt-2"
           >Choose File</label
         >
-        <input type="file" id="chooseFile" class="m-center w-0 h-0" />
+        <input type="file" id="chooseFile" class="m-center w-0 h-0" @change="chooseFile" />
+        <div class="showFile rounded bg-red-400 mt-3 p-1" v-if="fileSelected">
+          <p class="m-center text-white">{{fileSelected.name}}</p>
+        </div>
       </div>
     </div>
   </div>
@@ -41,15 +44,27 @@
 <script>
 export default {
   name: "LoadFile",
+  data(){
+    return {
+      fileSelected:null,
+    }
+  },
   methods: {
     handleDragOver() {
       console.log("dragging");
     },
-    handleDrop() {
+    handleDrop(event) {
       console.log("dropped");
+    this.fileSelected = event.dataTransfer.items[0].getAsFile();
+
     },
     handleDragLeave() {
       console.log("mouse left");
+    },
+    chooseFile(event) {
+      console.log("file selected");
+      this.fileSelected = event.target.files[0];
+      console.log(this.fileSelected);
     },
   },
 };

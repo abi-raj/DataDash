@@ -56,6 +56,7 @@ export default {
     handleDrop(event) {
       console.log("dropped");
     this.fileSelected = event.dataTransfer.items[0].getAsFile();
+    this.updateToParent();
 
     },
     handleDragLeave() {
@@ -65,7 +66,11 @@ export default {
       console.log("file selected");
       this.fileSelected = event.target.files[0];
       console.log(this.fileSelected);
+      this.updateToParent();
     },
+    updateToParent(){
+      this.$emit("updateToParent", this.fileSelected);
+    }
   },
 };
 </script>

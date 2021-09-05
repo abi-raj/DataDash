@@ -1,7 +1,18 @@
 from flask import Flask,request,jsonify
 import pandas as pd
 app = Flask(__name__)
+import numpy as np
 
+#functions
+def dtype(df,cols):
+  lis=[]
+  for col in cols:
+    #print(str(df[col].dtype))
+    if ((df[col].dtype)==np.object):
+      lis.append('String')
+    else:
+      lis.append('Number')
+  return lis
 
 @app.route('/')
 def hello_world():
@@ -17,6 +28,9 @@ def upload():
         lis=[l for l in ndf.columns]
         result={}
         result['columns']=lis
+        result['dtypes']=dtype(ndf,lis)
+        result['totalSize']=str(ndf.size)
+        result['rowSize']=str(len(ndf))
         for cname in lis:
           result[cname]=ndf[cname].tolist()
         return jsonify(result)

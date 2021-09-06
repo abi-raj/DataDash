@@ -1,7 +1,9 @@
 <template>
   <div>
     <NavBar />
-    <LoadFile @updateToParent="updateFile" />
+
+    <LoadFile @updateToParent="onUpload" />
+
     <div v-if="fileData.columns">
       <DataInfo
         v-if="fileData.columns !== undefined"
@@ -11,14 +13,25 @@
         :totalSize="fileData.totalSize"
       />
     </div>
-    <div  v-if="fileData.columns" class="choice flex justify-center">
-     <div  class="ml-4 space-x-2"> <input type="radio" id="charts" value="charts" v-model="picked" />
+
+    <div class="choice flex justify-center"  v-if="fileData.columns">
+     <div  class="ml-4 space-x-2"> <input type="radio" id="charts" value="charts" v-model="picked" @change="setDisplayType('charts')" />
       <label for="charts">Charts</label></div>
      
-      <div  class="ml-4 space-x-2"><input type="radio" id="analytics" value="analytics" v-model="picked" />
+      <div  class="ml-4 space-x-2"><input type="radio" id="analytics" value="analytics" v-model="picked" @change="setDisplayType('analytics')"/>
       <label for="analytics">Analytics</label></div>
      
     </div>
+
+   <div v-if="fileData.columns">
+     
+      <div v-if="picked === 'charts'">
+     <ChooseChart />
+      </div>
+
+   </div>
+
+
   </div>
 </template>
 
@@ -26,39 +39,28 @@
 import NavBar from "./navbar/NavBar.vue";
 import LoadFile from "./file/LoadFile.vue";
 import DataInfo from "./file/DataInfo.vue";
+import ChooseChart from "./charts/ChooseChart.vue";
 import axios from "axios";
+import { mapState ,mapMutations,mapGetters} from "vuex";
 export default {
   name: "Home",
-  data() {
-    return {
-      yes: false,
-      fileSelected: null,
-      fileData: {
-        allData: null,
-        columns: null,
-        dtypes: null,
-        rowSize: null,
-        totalSize: null,
-      },
-      picked:null,
-    };
+ 
+  computed: {
+...mapState(["fileSelected","fileData","picked"]),
+...mapGetters(["stringColumns","numberColumns"]),
   },
   components: {
     NavBar,
     LoadFile,
     DataInfo,
+    ChooseChart
   },
   methods: {
-    updateFile(file) {
-      if (file === null || file === undefined) {
-        this.yes = false;
-      } else {
-        this.fileSelected = file;
-        this.onUpload();
-      }
-    },
+    ...mapMutations(["setFileData","setDisplayType"]),
+ 
     onUpload() {
-      const formData = new FormData();
+      if(this.fileSelected){
+   const formData = new FormData();
       formData.append("file", this.fileSelected, this.fileSelected.name);
       axios
         .post(
@@ -66,19 +68,18 @@ export default {
           formData
         )
         .then((response) => {
-          this.fileData.columns = response.data.columns;
-          this.fileData.allData = response.data;
-          this.fileData.dtypes = response.data.dtypes;
-          this.fileData.rowSize = response.data.rowSize;
-          this.fileData.totalSize = response.data.totalSize;
-          console.log(this.fileData.allData);
-          this.yes = true;
+          console.log(response.data);
+          this.setFileData(response.data);
         })
         .catch((error) => {
           console.log(error);
         });
+      }
+   
     },
+
   },
+
 };
 </script>
 

@@ -5,14 +5,22 @@ import numpy as np
 
 #functions
 def dtype(df,cols):
+  result=[]
   lis=[]
+  strCols=[]
+  numCols=[]
   for col in cols:
     #print(str(df[col].dtype))
     if ((df[col].dtype)==np.object):
       lis.append('String')
+      strCols.append(col)
     else:
       lis.append('Number')
-  return lis
+      numCols.append(col)
+  result.append(lis)
+  result.append(strCols)
+  result.append(numCols)
+  return result
 
 @app.route('/')
 def hello_world():

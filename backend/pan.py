@@ -9,8 +9,8 @@ def dtype(df,cols):
             types[col] = 'Number'
     return types
 
-df=pd.read_csv('dataset.csv')
-ndf=df.dropna()
+df=pd.read_csv('csv-tables.csv')
+ndf=df.fillna(0)
 lis=[i for i in ndf.columns]
 print(lis)
 result={}

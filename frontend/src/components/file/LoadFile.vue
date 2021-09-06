@@ -47,13 +47,16 @@
 </template>
 
 <script>
-import { mapMutations } from "vuex";
+import { mapState,mapMutations } from "vuex";
 export default {
   name: "LoadFile",
   data() {
     return {
       fileSelected: null,
     };
+  },
+  computed: {
+  ...mapState(["fileSelected"]),
   },
   methods: {
     ...mapMutations(["setFileSelected"]),

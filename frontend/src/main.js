@@ -20,6 +20,8 @@ state(){
             dtypes: null,
             rowSize: null,
             totalSize: null,
+            numCols:null,
+            strCols:null,
           },
           picked:null,
     }
@@ -37,6 +39,9 @@ mutations:{
         state.fileData.dtypes = data.dtypes;
         state.fileData.rowSize = data.rowSize;
         state.fileData.totalSize = data.totalSize;
+        state.fileData.numCols = data.numCols;
+        state.fileData.strCols = data.strCols;
+       // console.log(state.fileData.strCols)
     },
     setDisplayType(state,data){
         state.picked = data

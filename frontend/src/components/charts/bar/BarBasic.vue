@@ -1,7 +1,7 @@
 <template>
   <div>
-    <!--  w-3/6 -->
-    <div class="row p-5 flex flex-row  justify-around">
+    
+    <div class="row p-5 flex flex-row justify-around">
       <div class="class_x">
         <label for="choose_x">Choose X axis : </label>
         <select
@@ -31,12 +31,16 @@
 
       <div class="rstart">
         <label for="rstart">Range Start : </label>
-        <input type="number" v-model="start"  class="border-4 border-green-300" />
+        <input
+          type="number"
+          v-model="start"
+          class="border-4 border-green-300"
+        />
       </div>
 
       <div class="rend">
         <label for="rend">Range End : </label>
-        <input type="number" v-model="end" class="border-4 border-green-300"/>
+        <input type="number" v-model="end" class="border-4 border-green-300" />
       </div>
     </div>
     <div class="chart">
@@ -64,21 +68,19 @@ export default {
   },
   methods: {
     updateX(e) {
-        console.log(this.start,this.end);
-      // console.log(e.target.value);
-      this.chartOptions.xaxis.categories =
-        this.fileData.allData[e.target.value];
-      this.chartOptions = {
-        ...this.chartOptions,
-        ...{
-          xaxis: {
-categories: this.fileData.allData[e.target.value].slice(this.start,this.end),
-//
-          },
+      console.log(this.start, this.end);
+ 
+      this.$refs.real.updateOptions({
+        xaxis: {
+          categories: this.fileData.allData[e.target.value].slice(
+            this.start,
+            this.end
+          ),
+    
         },
-      };
+      });
 
-      // console.log(this.chartOptions.xaxis.categories);
+ 
     },
     updateY(e) {
       console.log(e.target.value);
@@ -87,17 +89,18 @@ categories: this.fileData.allData[e.target.value].slice(this.start,this.end),
       this.$refs.real.updateSeries(
         [
           {
-            data: this.fileData.allData[e.target.value].slice(this.start,this.end),
-            //.slice(this.start,this.end)
+            data: this.fileData.allData[e.target.value].slice(
+              this.start,
+              this.end
+            ),
+           
           },
         ],
         false,
         true
       );
 
-      //        this.series.data =
-      // this.fileData.allData[e.target.value]
-      //    console.log(typeof(this.series));
+   
     },
   },
 
@@ -110,7 +113,7 @@ categories: this.fileData.allData[e.target.value].slice(this.start,this.end),
       series: [
         {
           data: [],
-          // data: [400, 430, 448, 470, 540, 580, 690, 1100, 1200, 1380],
+        
         },
       ],
       chartOptions: {
@@ -130,18 +133,7 @@ categories: this.fileData.allData[e.target.value].slice(this.start,this.end),
         },
         xaxis: {
           categories: [],
-          // categories: [
-          //   "South Korea",
-          //   "Canada",
-          //   "United Kingdom",
-          //   "Netherlands",
-          //   "Italy",
-          //   "France",
-          //   "Japan",
-          //   "United States",
-          //   "China",
-          //   "Germany",
-          // ],
+         
         },
       },
     };

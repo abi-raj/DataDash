@@ -7,13 +7,17 @@
           <option value="bar">Bar Charts</option>
           <option value="line">Line Charts</option>
           <option value="column">Column Charts</option>
+          <option value="area">Area Charts</option>
+          <option value="pie">Pie Charts</option>
         </select>
       </div>
     </div>
-    <div v-if="chartType" >
+    <div v-if="chartType">
       <BarChart v-if="chartType === 'bar'" />
       <LineChart v-if="chartType === 'line'" />
       <ColumnChart v-if="chartType === 'column'" />
+      <AreaChart v-if="chartType === 'area'" />
+      <PieChart v-if="chartType === 'pie'" />
     </div>
   </div>
 </template>
@@ -22,6 +26,8 @@
 import BarChart from "./bar/BarCharts.vue";
 import LineChart from "./line/LineCharts.vue";
 import ColumnChart from "./column/ColumnCharts.vue";
+import AreaChart from "./area/AreaCharts.vue";
+import PieChart from "./pie/PieCharts.vue";
 export default {
   name: "ChooseChart",
   data() {
@@ -33,6 +39,8 @@ export default {
     BarChart,
     LineChart,
     ColumnChart,
+    AreaChart,
+    PieChart,
   },
 };
 </script>

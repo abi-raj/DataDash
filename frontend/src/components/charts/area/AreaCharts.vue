@@ -11,33 +11,30 @@
       </div>
       <div
         class="chart-select"
-        :class="{ 'border-green-300': choosen === 'grouped' }"
-        id="grouped"
-        @click="select('grouped')"
+        :class="{ 'border-green-300': choosen === 'spline' }"
+        id="spline"
+        @click="select('spline')"
       >
-        Grouped
+        Spline
       </div>
  <div
         class="chart-select"
-        :class="{ 'border-green-300': choosen === 'labeled' }"
-        id="labeled"
-        @click="select('labeled')"
-      >
-        Data labeled
+        :class="{ 'border-green-300': choosen === 'datetime' }"
+        id="datetime"
+        @click="select('datetime')"
+      >Date Timed
       </div>
 
     </div>
-    <BarBasic v-if="choosen === 'basic'" />
+
   </div>
 </template>
 
 <script>
-import BarBasic from "./BarBasic.vue";
+
 export default {
-  name: "BarCharts",
-  components: {
-    BarBasic,
-  },
+  name: "AreaCharts",
+
   data() {
     return {
       choosen: null,

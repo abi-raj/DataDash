@@ -2,7 +2,7 @@
   <div>
     <div class="all-charts">
       <div
-        class="border-2 p-2 w-1/12"
+        class="chart-select"
         :class="{ 'border-green-300': choosen === 'basic' }"
         id="basic"
         @click="select('basic')"
@@ -10,7 +10,7 @@
         Basic
       </div>
       <div
-        class="border-2 p-2 w-1/12"
+        class="chart-select"
         :class="{ 'border-green-300': choosen === 'labels' }"
         id="labels"
         @click="select('labels')"
@@ -38,5 +38,11 @@ export default {
 };
 </script>
 
-<style scoped>
+<style >
+.chart-select{
+  @apply border-2 p-2 w-1/12 text-center;
+}
+.all-charts{
+  @apply p-4 flex justify-around;
+}
 </style>

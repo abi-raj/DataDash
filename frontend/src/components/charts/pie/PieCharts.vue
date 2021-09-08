@@ -3,41 +3,38 @@
     <div class="all-charts">
       <div
         class="chart-select"
-        :class="{ 'border-green-300': choosen === 'basic' }"
-        id="basic"
-        @click="select('basic')"
+        :class="{ 'border-green-300': choosen === 'simple' }"
+        id="simple"
+        @click="select('simple')"
       >
-        Basic
+        Simple Pie
       </div>
       <div
         class="chart-select"
-        :class="{ 'border-green-300': choosen === 'grouped' }"
-        id="grouped"
-        @click="select('grouped')"
+        :class="{ 'border-green-300': choosen === 'donut' }"
+        id="donut"
+        @click="select('donut')"
       >
-        Grouped
+        Simple Donut
       </div>
  <div
         class="chart-select"
-        :class="{ 'border-green-300': choosen === 'labeled' }"
-        id="labeled"
-        @click="select('labeled')"
-      >
-        Data labeled
+        :class="{ 'border-green-300': choosen === 'mono' }"
+        id="mono"
+        @click="select('mono')"
+      >Mono Pie
       </div>
 
     </div>
-    <BarBasic v-if="choosen === 'basic'" />
+
   </div>
 </template>
 
 <script>
-import BarBasic from "./BarBasic.vue";
+
 export default {
-  name: "BarCharts",
-  components: {
-    BarBasic,
-  },
+  name: "PieCharts",
+
   data() {
     return {
       choosen: null,

@@ -13,9 +13,8 @@
 
 <script>
 import VueApexCharts from "vue3-apexcharts";
-
 export default {
-  name: "AreaBasic",
+  name: "AreaSpline",
   components: {
     apexchart: VueApexCharts,
   },
@@ -23,42 +22,41 @@ export default {
     return {
       series: [
         {
-          name: "STOCK ABC",
-          data: [5],
+          name: "series1",
+          data: [31, 40, 28, 51, 42, 109, 100],
+        },
+        {
+          name: "series2",
+          data: [11, 32, 45, 32, 34, 52, 41],
         },
       ],
       chartOptions: {
         chart: {
-          type: "area",
           height: 350,
-          zoom: {
-            enabled: false,
-          },
+          type: "area",
         },
         dataLabels: {
           enabled: false,
         },
         stroke: {
-          curve: "straight",
+          curve: "smooth",
         },
-
-        title: {
-          text: "Fundamental Analysis of Stocks",
-          align: "left",
-        },
-        subtitle: {
-          text: "Price Movements",
-          align: "left",
-        },
-        labels: ["LAbel1"],
         xaxis: {
           type: "datetime",
+          categories: [
+            "2018-09-19T00:00:00.000Z",
+            "2018-09-19T01:30:00.000Z",
+            "2018-09-19T02:30:00.000Z",
+            "2018-09-19T03:30:00.000Z",
+            "2018-09-19T04:30:00.000Z",
+            "2018-09-19T05:30:00.000Z",
+            "2018-09-19T06:30:00.000Z",
+          ],
         },
-        yaxis: {
-          opposite: true,
-        },
-        legend: {
-          horizontalAlign: "left",
+        tooltip: {
+          x: {
+            format: "dd/MM/yy HH:mm",
+          },
         },
       },
     };

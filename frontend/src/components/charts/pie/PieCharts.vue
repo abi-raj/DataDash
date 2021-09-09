@@ -17,24 +17,34 @@
       >
         Simple Donut
       </div>
- <div
+      <div
         class="chart-select"
         :class="{ 'border-green-300': choosen === 'mono' }"
         id="mono"
         @click="select('mono')"
-      >Mono Pie
+      >
+        Mono Pie
       </div>
-
     </div>
-
+    <div class="charts">
+      <PieSimple v-if="choosen === 'simple'"></PieSimple>
+      <PieDonut v-if="choosen === 'donut'"></PieDonut>
+      <PieMono v-if="choosen === 'mono'"></PieMono>
+    </div>
   </div>
 </template>
 
 <script>
-
+import PieSimple from "./PieSimple.vue";
+import PieDonut from "./PieDonut.vue";
+import PieMono from "./PieMono.vue";
 export default {
   name: "PieCharts",
-
+  components: {
+    PieSimple,
+    PieDonut,
+    PieMono,
+  },
   data() {
     return {
       choosen: null,
@@ -50,10 +60,10 @@ export default {
 </script>
 
 <style >
-.chart-select{
+.chart-select {
   @apply border-2 p-2 w-1/12 text-center;
 }
-.all-charts{
+.all-charts {
   @apply p-4 flex justify-around;
 }
 </style>

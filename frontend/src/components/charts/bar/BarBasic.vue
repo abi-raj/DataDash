@@ -1,7 +1,7 @@
 <template>
   <div>
     
-    <div class="row p-5 flex flex-row justify-around">
+    <div class="chart-options">
       <div class="class_x">
         <label for="choose_x">Choose X axis : </label>
         <select
@@ -142,4 +142,8 @@ export default {
 </script>
 
 <style >
+.chart-options{
+  @apply  p-5 flex flex-row justify-around;
+}
+
 </style>

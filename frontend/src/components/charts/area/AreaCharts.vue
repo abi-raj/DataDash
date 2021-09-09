@@ -17,24 +17,31 @@
       >
         Spline
       </div>
- <div
+      <div
         class="chart-select"
         :class="{ 'border-green-300': choosen === 'datetime' }"
         id="datetime"
         @click="select('datetime')"
-      >Date Timed
+      >
+        Date Timed
       </div>
-
     </div>
-
+    <div class="charts">
+      <AreaBasic v-if="choosen === 'basic'" />
+      <AreaSpline v-if="choosen === 'spline'" />
+    </div>
   </div>
 </template>
 
 <script>
-
+import AreaBasic from "./AreaBasic.vue";
+import AreaSpline from "./AreaSpline.vue";
 export default {
   name: "AreaCharts",
-
+  components: {
+    AreaBasic,
+    AreaSpline,
+  },
   data() {
     return {
       choosen: null,
@@ -42,18 +49,18 @@ export default {
   },
   methods: {
     select(name) {
-      console.log("clicked");
       this.choosen = name;
+      console.log(this.choosen);
     },
   },
 };
 </script>
 
 <style >
-.chart-select{
+.chart-select {
   @apply border-2 p-2 w-1/12 text-center;
 }
-.all-charts{
+.all-charts {
   @apply p-4 flex justify-around;
 }
 </style>

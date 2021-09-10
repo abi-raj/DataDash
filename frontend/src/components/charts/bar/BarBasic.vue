@@ -83,9 +83,9 @@ export default {
  
     },
     updateY(e) {
-      console.log(e.target.value);
-      console.log(typeof this.fileData.allData[e.target.value]);
-      console.log(this.fileData.allData[e.target.value]);
+      // console.log(e.target.value);
+      // console.log(typeof this.fileData.allData[e.target.value]);
+      // console.log(this.fileData.allData[e.target.value]);
       this.$refs.real.updateSeries(
         [
           {

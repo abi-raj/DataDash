@@ -15,7 +15,7 @@
         id="stepline"
         @click="select('stepline')"
       >
-        SteplLine
+        Step Line
       </div>
       <div
         class="chart-select"

@@ -17,14 +17,6 @@
       >
         Spline
       </div>
-      <div
-        class="chart-select"
-        :class="{ 'border-green-300': choosen === 'datetime' }"
-        id="datetime"
-        @click="select('datetime')"
-      >
-        Date Timed
-      </div>
     </div>
     <div class="charts">
       <AreaBasic v-if="choosen === 'basic'" />

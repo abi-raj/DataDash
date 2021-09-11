@@ -2,6 +2,7 @@
   <div>
     <div id="chart">
       <apexchart
+      height="350"
         type="donut"
         :options="chartOptions"
         :series="series"

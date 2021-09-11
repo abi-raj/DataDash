@@ -1,6 +1,5 @@
 <template>
   <div>
-    
     <div class="chart-options">
       <div class="class_x">
         <label for="choose_x">Choose X axis : </label>
@@ -69,23 +68,17 @@ export default {
   methods: {
     updateX(e) {
       console.log(this.start, this.end);
- 
+
       this.$refs.real.updateOptions({
         xaxis: {
           categories: this.fileData.allData[e.target.value].slice(
             this.start,
             this.end
           ),
-    
         },
       });
-
- 
     },
     updateY(e) {
-      // console.log(e.target.value);
-      // console.log(typeof this.fileData.allData[e.target.value]);
-      // console.log(this.fileData.allData[e.target.value]);
       this.$refs.real.updateSeries(
         [
           {
@@ -93,14 +86,11 @@ export default {
               this.start,
               this.end
             ),
-           
           },
         ],
         false,
         true
       );
-
-   
     },
   },
 
@@ -113,7 +103,6 @@ export default {
       series: [
         {
           data: [],
-        
         },
       ],
       chartOptions: {
@@ -133,7 +122,6 @@ export default {
         },
         xaxis: {
           categories: [],
-         
         },
       },
     };
@@ -142,8 +130,7 @@ export default {
 </script>
 
 <style >
-.chart-options{
-  @apply  p-5 flex flex-row justify-around;
+.chart-options {
+  @apply p-5 flex flex-row justify-around;
 }
-
 </style>

@@ -15,9 +15,8 @@
         </select>
       </div>
     </div>
-
-    <button class="btn" @click="download">Download</button>
-
+    <button class="btn" @click="download()">Render</button>
+    <a :href="imageDownload" download>Download</a>
     <div id="chart">
       <apexchart
         ref="real"
@@ -43,11 +42,15 @@ export default {
   },
   methods: {
     async download() {
-      
+      let el = this.$refs.real.$el;
+      let options = { type: "dataURL" };
+      this.imageDownload = await this.$html2canvas(el, options);
+      //console.log(typeof this.imageDownload)
     },
   },
   data() {
     return {
+      imageDownload: null,
       series: [44, 55, 15],
       chartOptions: {
         chart: {

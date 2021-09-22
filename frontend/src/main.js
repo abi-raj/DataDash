@@ -2,7 +2,7 @@ import { createApp } from 'vue'
 import {
     createStore
 } from "vuex";
-
+import VueHtml2Canvas from "vue-html2canvas";
 // import App from './App.vue'
 
 import Home from './components/Home.vue'
@@ -71,5 +71,6 @@ return result
 })
 
 const app=createApp(Home);
+app.use(VueHtml2Canvas);
 app.use(store);
 app.mount('#app')

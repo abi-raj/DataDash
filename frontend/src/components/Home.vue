@@ -21,6 +21,9 @@
       <div  class="ml-4 space-x-2"><input type="radio" id="analytics" value="analytics" v-model="picked" @change="setDisplayType('analytics')"/>
       <label for="analytics">Analytics</label></div>
      
+
+      <div  class="ml-4 space-x-2"><input type="radio" id="prediction" value="prediction" v-model="picked" @change="setDisplayType('prediction')"/>
+      <label for="prediction">Prediction</label></div>
     </div>
 
    <div v-if="fileData.columns">
@@ -28,10 +31,16 @@
       <div v-if="picked === 'charts'">
      <ChooseChart />
       </div>
+   <div v-if="picked === 'analytics'">
+     <AnalysisBase />
+      </div>
+  <div v-if="picked === 'prediction'">
+     <PredictionBase />
+      </div>
 
    </div>
-
-    <ChooseChart />
+<!-- 
+    <ChooseChart /> -->
   </div>
 </template>
 
@@ -40,6 +49,8 @@ import NavBar from "./navbar/NavBar.vue";
 import LoadFile from "./file/LoadFile.vue";
 import DataInfo from "./file/DataInfo.vue";
 import ChooseChart from "./charts/ChooseChart.vue";
+import AnalysisBase from "./analysis/AnalysisBase.vue";
+import PredictionBase from "./prediction/PredictionBase.vue";
 import axios from "axios";
 import { mapState ,mapMutations,mapGetters} from "vuex";
 export default {
@@ -53,7 +64,9 @@ export default {
     NavBar,
     LoadFile,
     DataInfo,
-    ChooseChart
+    ChooseChart,
+    AnalysisBase,
+    PredictionBase
   },
   methods: {
     ...mapMutations(["setFileData","setDisplayType"]),

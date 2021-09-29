@@ -120,13 +120,12 @@ export default {
       choosenCol: null,
       addedColumns: [],
       addedColVals: [],
-      series: [
-        
-      ],
+      series: [],
       chartOptions: {
         chart: {
           height: 350,
           type: "area",
+        
         },
         dataLabels: {
           enabled: false,
@@ -135,10 +134,9 @@ export default {
           curve: "smooth",
         },
         xaxis: {
-          type: "datetime",
+          type: "category",
           categories: [
-            
-          ],
+                  ],
         },
         tooltip: {
           x: {

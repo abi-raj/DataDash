@@ -44,6 +44,7 @@
     </div>
     <div id="chart">
       <apexchart
+      ref="real"
         type="area"
         height="350"
         :options="chartOptions"
@@ -95,7 +96,9 @@ export default {
     return {
       start: 0,
       end: 15,
-      series: [],
+      series: [
+      
+      ],
       chartOptions: {
         chart: {
           type: "area",
@@ -111,18 +114,11 @@ export default {
           curve: "straight",
         },
 
-        title: {
-          text: "Fundamental Analysis of Stocks",
-          align: "left",
-        },
-        subtitle: {
-          text: "Price Movements",
-          align: "left",
-        },
+       
         labels: [],
-        xaxis: {
-          type: "datetime",
-        },
+       xaxis: {
+         type:'category'
+       },
         yaxis: {
           opposite: true,
         },

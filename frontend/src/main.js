@@ -24,6 +24,12 @@ state(){
             strCols:null,
           },
           picked:null,
+          numAnalysis:{
+              maximum:null,
+              minimum:null,
+              average:null,
+              sum:null,
+          },
     }
 },
 mutations:{

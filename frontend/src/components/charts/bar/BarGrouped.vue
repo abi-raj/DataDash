@@ -117,7 +117,7 @@ export default {
   data() {
     return {
       start: 0,
-      end: 20,
+      end: 10,
       series: [],
       chartOptions: {
         chart: {

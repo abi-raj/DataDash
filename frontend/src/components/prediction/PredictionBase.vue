@@ -60,7 +60,7 @@
       <button class="btn-predict" @click="predictRequest">Predict</button>
     </div>
     <div class="res center">
-      <p class="text-lg">{{ result }}</p>
+      <p class="text-lg p-2">{{ result }}</p>
     </div>
   </div>
 </template>
@@ -99,7 +99,7 @@ export default {
           )
           .then((response) => {
             console.log(response.data);
-            this.result = response.data.result;
+            this.result = "\nPredicted value is : "+response.data.result;
           })
           .catch((error) => {
             console.log(error);

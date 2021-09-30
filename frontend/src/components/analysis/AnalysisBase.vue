@@ -73,6 +73,7 @@ export default {
 updateCol (e){
    
     this.numAnalysis.min = Math.min(...this.fileData.allData[e.target.value]);
+    
     this.numAnalysis.max = Math.max(...this.fileData.allData[e.target.value]);
     this.numAnalysis.avg = (this.fileData.allData[e.target.value].reduce((a,b)=>a+b)/this.fileData.allData[e.target.value].length).toFixed(2);
     this.numAnalysis.sum = this.fileData.allData[e.target.value].reduce((a,b)=>a+b).toFixed(2);

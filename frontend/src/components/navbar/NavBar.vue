@@ -29,7 +29,7 @@
           <!-- nav last items -->
           <div class="flex space-x-10">
             <a href="#" class="nav-item">About</a>
-            <!-- <a href="#" class="nav-item">GitHub</a> -->
+            <a href="https://github.com/abi-raj/DataDash" class="nav-item">GitHub</a>
           </div>
         </div>
       </div>

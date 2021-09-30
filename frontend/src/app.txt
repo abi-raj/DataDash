@@ -2,56 +2,48 @@
   <div>
     <input name="file" type="file" @change="upload" />
     <button @click="onUpload">Upload</button>
-    <p v-if="selectedFile"><b>File selected (now click upload)</b></p>
+    <p v-if="selectedFile">selected</p>
+    
+    <div v-if="columns">
+      <l>Columns:</l
+      ><select v-model="selec" name="colum">
+        <option v-for="col in columns" :key="col">{{ col }}</option>
+      </select>
+    </div>
 
-    <div class="xyplot">
-      <br />
-      <label>X axis (String) :    </label>
-      <select v-model="x">
-        <option v-for="col in columns" :key="col">{{ col }}</option>
-      </select>
-      <br />
-      <br />
-      <label>Y axis (number) :   </label>
-      <select v-model="y">
-        <option v-for="col in columns" :key="col">{{ col }}</option>
-      </select>
-    </div>
-    <br>
+
+
+<p>{{selec}}</p>
+  
   <div>
-    <button @click="onClear">Clear selection</button>
+       <ul v-if="data && selec">
+
+         <p>{{data.selec}}</p>
+       <!-- <li v-for="(v,k) in data" :key="k">
+         <p v-if="k===selec">{{v}}</p>
+         </li> -->
+     </ul>
+    
   </div>
-    <div v-if="x && y" class="plotted">
-      x and y done
-      <p>{{datam[x]}}</p>
-      <p>{{datam[y]}} </p>
-     <HelloWorld :xax="datam[x]" :yax="datam[y]" :key="x[0]"/>
-    </div>
+
+ 
   </div>
 </template>
 
 <script>
 import axios from "axios";
-import HelloWorld from "./components/HelloWorld.vue";
 export default {
   name: "App",
-  components: { HelloWorld },
+
   data() {
     return {
       selectedFile: null,
-      datam: null,
+      data: null,
       columns: null,
       selec: null,
-      x: null,
-      y: null,
-      
     };
   },
   methods: {
-    onClear(){
-      this.x=null;
-      this.y=null;
-    },
     upload(event) {
       this.selectedFile = event.target.files[0];
     },
@@ -64,9 +56,24 @@ export default {
           formData
         )
         .then((response) => {
-          this.columns = response.data.columns;
-          this.datam = response.data;
-          console.log(this.datam);
+          
+console.log(response.data);
+this.columns=['C1','C2','C3'];
+this.data={
+  columns:['C1','C2','C3'],
+  C1:[1,2,3],
+  C2:[4,5,6],
+  C3:[7,8,9]
+}
+
+          // this.columns = response.data.columns;
+          // this.data = ((response.data));
+        //  console.log(response.data.specialisation);
+          // console.log(this.data);
+          // this.newData="hello"
+          // console.log(response.data.columns)
+          //"https://kurius.herokuapp.com/upload"
+          // / https://CloudyPuzzledDominspector.abisnhss.repl.co/upload
         })
         .catch((error) => {
           console.log(error);

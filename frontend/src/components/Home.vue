@@ -14,7 +14,7 @@
       />
     </div>
 
-    <div class="choice flex justify-center"  v-if="fileData.columns">
+    <div class="choice flex justify-center p-4"  v-if="fileData.columns">
      <div  class="ml-4 space-x-2"> <input type="radio" id="charts" value="charts" v-model="picked" @change="setDisplayType('charts')" />
       <label for="charts">Charts</label></div>
      
@@ -26,7 +26,7 @@
       <label for="prediction">Prediction</label></div>
     </div>
 
-   <div v-if="fileData.columns">
+   <div v-if="fileData.columns" class="py-8">
      
       <div v-if="picked === 'charts'">
      <ChooseChart />

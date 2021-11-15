@@ -148,7 +148,7 @@ export default {
         },
         yaxis: {
           title: {
-            text: "$ (thousands)",
+            text: "",
           },
         },
         fill: {
